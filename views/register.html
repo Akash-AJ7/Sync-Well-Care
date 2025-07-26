@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - SYNCWELLCARE </title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Register for SYNCWELLCARE</h1>
+    </header>
+    <section class="form-section">
+        <form id="registerForm" method="POST" action="/register">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter password" required>
+            <button type="submit">Register</button>
+        </form>
+        <div id="registerMessage"></div>
+        <p>Already registered? <a href="/login">Login here</a></p>
+    </section>
+    <script>
+        const registerForm = document.getElementById('registerForm');
+        const registerMessage = document.getElementById('registerMessage');
+
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new URLSearchParams(new FormData(registerForm)).toString();
+
+            const response = await fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formData
+            });
+
+            if (response.ok) {
+                registerMessage.innerText = 'Registration successful! Redirecting to login...';
+                setTimeout(() => {
+                    window.location.href = '/login';
+                }, 2000);
+            } else {
+                const errorText = await response.text();
+                registerMessage.innerText = `Registration failed: ${errorText}`;
+            }
+        });
+    </script>
+</body>
+</html>

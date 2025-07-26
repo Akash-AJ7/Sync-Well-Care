@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>well-wisher </title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Task Reminder </h1>
+
+    <div id="container">
+        <form id="reminderForm">
+            <center>
+            <h2>Create a Reminder</h2>
+            
+            <label for="taskName">Task Name:</label>
+            <input type="text" id="taskName" name="taskName" required>
+            
+            <label for="taskTime">Task Time:</label>
+            <input type="datetime-local" id="taskTime" name="taskTime" required>
+            
+            <label for="nomineePhone">Nominee Phone:</label>
+            <input type="tel" id="nomineePhone" name="nomineePhone" required>
+            
+            <h2>Track Disease Values</h2>
+
+            <label for="diseaseName">Disease Name:</label>
+            <input type="text" id="diseaseName" name="diseaseName" oninput="getAdvice()">
+            
+            <label for="diseaseValue">Disease Value:</label>
+            <input type="number" id="diseaseValue" name="diseaseValue" oninput="getAdvice()">
+
+            <button type="submit">Set Reminder & Submit Disease Info</button>
+        </form>
+    </center>
+        <div id="taskList"></div>
+        <div id="upcomingTasks">
+            <center>
+            <h2>Upcoming Tasks</h2>
+        </center>
+            <ul id="upcomingTasksList"></ul>
+        </div>
+        <div id="message"></div>
+    
+        <div id="adviceContainer">
+            <h2>Health Advice</h2>
+            <p id="dietAdvice">Diet: </p>
+            <p id="foodAdvice">Food: </p>
+            <p id="lifestyleAdvice">Lifestyle: </p>
+        </div>
+    </div>
+
+    
+    <!-- Modal for Camera -->
+    <div id="videoModal">
+        <div id="videoModalContent">
+            <video id="videoPreview" autoplay></video>
+            <button id="startRecording">Start Recording</button>
+            <button id="stopRecording">Stop Recording</button>
+            <button id="closeModal">Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
